@@ -1,3 +1,5 @@
+import logging
+from kivy.logger import Logger
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 from kivymd.app import MDApp
@@ -11,6 +13,7 @@ from screens.home_screen import HomeScreen
 class MainApp(MDApp):
     def build(self):
         self.theme_cls.primary_palette = "Blue"
+        Logger.setLevel(logging.ERROR)
         # Window.fullscreen = True
         
         # Load all KV files
@@ -23,6 +26,8 @@ class MainApp(MDApp):
         sm.add_widget(SplashScreen(name="splash"))
         sm.add_widget(LoginScreen(name="login"))
         sm.add_widget(HomeScreen(name="home"))
+
+        sm.current = "login"
         
         return sm
 

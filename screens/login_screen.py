@@ -3,10 +3,18 @@ from kivy.core.image import Image as CoreImage
 from io import BytesIO
 import qrcode
 
+from server import socket_con
+
+
+
 class LoginScreen(Screen):
     def generate_qr(self):
+
+        qrcodedata = socket_con.get_qr_data(socket_con.socket_client, "80:00:00:00:00:01")
+        print("surya",qrcodedata)
+
         # Generate a QR code
-        qr = qrcode.make("Sample QR Data")
+        qr = qrcode.make(qrcodedata)
         buffer = BytesIO()
         qr.save(buffer, format='PNG')
         buffer.seek(0)
