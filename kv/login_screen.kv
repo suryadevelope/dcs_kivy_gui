@@ -1,0 +1,31 @@
+<LoginScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: "20dp"
+        spacing: "10dp"
+        MDTextField:
+            id: username
+            hint_text: "Enter Username"
+            pos_hint: {"center_x": 0.5}
+            size_hint_x: None
+            width: 300
+        MDTextField:
+            id: password
+            hint_text: "Enter Password"
+            password: True
+            pos_hint: {"center_x": 0.5}
+            size_hint_x: None
+            width: 300
+        MDRaisedButton:
+            text: "Login"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.validate_login()
+        MDRectangleFlatButton:
+            text: "Generate QR Code"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.generate_qr()
+        Image:
+            id: qr_code_image
+            size_hint: None, None
+            size: "150dp", "150dp"
+            pos_hint: {"center_x": 0.5}

@@ -1,0 +1,29 @@
+<SplashScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        spacing: "20dp"
+        padding: "50dp"
+        MDLabel:
+            text: "DCS"
+            halign: "center"
+            theme_text_color: "Primary"
+            text_color: 1, 1, 1, 1
+            font_style: "H2"
+        MDLabel:
+            text: "Welcome to Drive care systems"
+            halign: "center"
+            theme_text_color: "Secondary"
+            font_style: "Subtitle1"
+        Image :
+            source: "assets/eeeepit.png"
+            size_hint: None, None
+            size: "200dp", "200dp"
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+        Image :
+            source: "assets/loading.gif"
+            size_hint: None, None
+            size: "200dp", "200dp"
+            anim_loop:0.47
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
