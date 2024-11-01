@@ -19,7 +19,7 @@ SERVER_URL = f"{HOST}:{PORT}"
 # Create a singleton Socket.IO client instance
 sio = socketio.Client(
     reconnection=True,
-    serializer=Emitter
+    # serializer=Emitter
     )
 # Connect to the server
 def connect_to_server():
@@ -47,28 +47,6 @@ def on_auth_response(data):
     print("Received authentication response:", data)
     sio.auth_response = data  # Store response for later use
 
-
-
-def get_qr_data(socket,mac_address):
-    """
-    Sends the MAC address to the server for authentication over the established Socket.IO connection.
-    """
-    try:
-        # Prepare the data and emit it for authentication
-        
-        socket.emit("init_connect", mac_address)
-
-        # Wait for the response (or use async handlers)
-        socket.sleep(2)  # Adjust timing as needed based on response
-
-        # Retrieve the stored response
-        response = getattr(socket, "qrdata", None)
-        return response
-
-    except Exception as e:
-        print(f"Error in device authentication: {e}")
-        return None
-    
 
 # Initialize connection at the start
 connect_to_server()

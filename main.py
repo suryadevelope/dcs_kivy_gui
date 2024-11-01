@@ -27,7 +27,7 @@ class MainApp(MDApp):
         sm.add_widget(LoginScreen(name="login"))
         sm.add_widget(HomeScreen(name="home"))
 
-        sm.current = "login"
+        # sm.current = "login"
         
         return sm
 
