@@ -40,7 +40,7 @@ while True:
 
         matchIndex = np.argmin(face_dist)
         match = "Unknown"
-        if results[matchIndex] and face_dist<=TOLERANCE: # if there is a known face
+        if results[matchIndex] and face_dist[matchIndex]<=TOLERANCE: # if there is a known face
             match = known_names[matchIndex] # who that person is
             print(f"Match found: {match}")
 ### DRAW RECTANGLE AND #####################################
