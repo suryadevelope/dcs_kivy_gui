@@ -5,13 +5,14 @@ import os
 
 # Load configuration
 config = configparser.ConfigParser()
-config.read(os.path.join(os.path.dirname(__file__), '../config/config.ini'))
+config.read(os.path.join(os.path.dirname(__file__), '../utils/config.ini'))
 
 
 # Retrieve host and port from the configuration
-APIURL = config.get("API", "host", fallback="http://localhost")
-# PORT = config.get("API", "port", fallback="3000")
-# APIURL = f"{HOST}:{PORT}"
+# APIURL = config.get("API", "host", fallback="http://localhost")
+HOST = config.get("API", "host", fallback="http://localhost")
+PORT = config.get("API", "port", fallback="3000")
+APIURL = f"{HOST}:{PORT}"
 
 def authenticate_device(mac_address):
     """

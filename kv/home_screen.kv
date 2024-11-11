@@ -1,6 +1,55 @@
 <HomeScreen>:
     BoxLayout:
-        orientation: "vertical"
-        MDLabel:
-            text: "Home Screen"
-            halign: "center"
+        orientation: 'horizontal'
+        
+        # First Column - Camera Placeholder
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: 1
+            padding: '10dp'
+            Image:
+                id: camera_feed
+                allow_stretch: True
+                keep_ratio: True
+
+        # Second Column - Map Placeholder
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: 1
+            padding: '10dp'
+            id: mapview_con
+            # MapView:
+            #     id: mapview
+                # source:"osm-de"
+                # lat, lon, and zoom will be set by HomeScreen class initialization
+
+
+        # Third Column - Icon Column
+        GridLayout:
+            cols: 1
+            size_hint_x: 0.3
+            row_default_height: '50dp'
+            row_force_default: True
+            padding: '10dp'
+            spacing: '10dp'
+            
+            # Icons with on_release to open URLs in browser
+            MDIconButton:
+                icon: 'apps'
+                user_font_size: '20sp'
+                on_release: root.open_url("https://example.com")
+
+            MDIconButton:
+                icon: 'youtube'
+                user_font_size: '20sp'
+                on_release: root.open_url("https://youtube.com")
+
+            MDIconButton:
+                icon: 'whatsapp'
+                user_font_size: '20sp'
+                on_release: root.open_url("https://web.whatsapp.com")
+
+            MDIconButton:
+                icon: 'camera'
+                user_font_size: '20sp'
+                on_release: root.open_url("https://cameraapp.com")

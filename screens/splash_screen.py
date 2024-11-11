@@ -15,9 +15,8 @@ class SplashScreen(Screen):
         if device_token and "dcs_token" in device_token:
             # Save the device token in local storage
             self.store.put("devicetoken", token=device_token["dcs_token"])
-            print("Device token received and stored.")
+            print("Device token received and stored.",device_token)
         
-        print("Splash Screen",self.store)
         Clock.schedule_once(self.switch_to_login, 3)
 
     def switch_to_login(self, *args):
@@ -25,4 +24,4 @@ class SplashScreen(Screen):
         if self.store.exists("auth_token"):
             self.manager.current = "home"  # Navigate to home screen
         else:
-            self.manager.current = "login"  # Navigate to login screen
+            self.manager.current = "home"  # Navigate to login screen

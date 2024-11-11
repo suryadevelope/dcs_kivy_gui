@@ -9,7 +9,7 @@ store = JsonStore("auth_info.json")
 
 # Load configuration
 config = configparser.ConfigParser()
-config.read(os.path.join(os.path.dirname(__file__), 'config/config.ini'))
+config.read(os.path.join(os.path.dirname(__file__), '../utils/config.ini'))
 
 # Retrieve host and port from the configuration
 HOST = config.get("API", "host", fallback="http://localhost")
@@ -18,16 +18,16 @@ SERVER_URL = f"{HOST}:{PORT}"
 
 # Create a singleton Socket.IO client instance
 sio = socketio.Client(
-    reconnection=True,
+    # reconnection=True,
     # serializer=Emitter
     )
 # Connect to the server
 def connect_to_server():
     if not sio.connected:
         try:
-            print(store.get("devicetoken").get("token"))
-    
-            sio.connect(SERVER_URL,auth={"token":store.get("devicetoken").get("token")},transports= ['websocket'])
+            devicetoken = store.get("devicetoken").get("token")
+            print(devicetoken,SERVER_URL)
+            sio.connect(SERVER_URL,auth={"token":devicetoken},retry=True)
             print("Connected to the Socket.IO server.")
         except socketio.exceptions.ConnectionError as e:
             print(f"Socket connection error: {e}")
