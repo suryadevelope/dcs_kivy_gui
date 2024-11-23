@@ -3,3 +3,5 @@ cache
 mytests
 workspace
 tusimple_18.pth
+*.mp4
+*.whl 

@@ -45,7 +45,7 @@ class HomeScreen(Screen):
             texture = Texture.create(size=(frame.shape[1], frame.shape[0]), colorfmt='rgb')
             texture.blit_buffer(buf, colorfmt='rgb', bufferfmt='ubyte')
             # Display the texture in the `Image` widget
-            self.ids.camera_feed.texture = texture
+            self.ids.top_camera_feed.texture = texture
 
     def open_url(self, url):
         """Open the given URL in the web browser."""

@@ -1,55 +1,146 @@
+# <HomeScreen>:
+#     BoxLayout:
+#         orientation: 'horizontal'
+        
+#         # First Column - Camera Placeholder
+#         BoxLayout:
+#             orientation: 'vertical'
+#             size_hint_y: 1
+#             padding: '10dp'
+#             Image:
+#                 id: camera_feed
+#                 allow_stretch: True
+#                 keep_ratio: True
+
+
+#         # Second Column - Map Placeholder
+#         BoxLayout:
+#             orientation: 'vertical'
+#             size_hint_y: 1
+#             padding: '10dp'
+#             id: mapview_con
+#             # MapView:
+#             #     id: mapview
+#                 # source:"osm-de"
+#                 # lat, lon, and zoom will be set by HomeScreen class initialization
+
+
+#         # Third Column - Icon Column
+#         GridLayout:
+#             cols: 1
+#             size_hint_x: 0.3
+#             row_default_height: '50dp'
+#             row_force_default: True
+#             padding: '10dp'
+#             spacing: '10dp'
+            
+#             # Icons with on_release to open URLs in browser
+#             MDIconButton:
+#                 icon: 'apps'
+#                 user_font_size: '20sp'
+#                 on_release: root.open_url("https://example.com")
+
+#             MDIconButton:
+#                 icon: 'youtube'
+#                 user_font_size: '20sp'
+#                 on_release: root.open_url("https://youtube.com")
+
+#             MDIconButton:
+#                 icon: 'whatsapp'
+#                 user_font_size: '20sp'
+#                 on_release: root.open_url("https://web.whatsapp.com")
+
+#             MDIconButton:
+#                 icon: 'camera'
+#                 user_font_size: '20sp'
+#                 on_release: root.open_url("https://cameraapp.com")
+
+
 <HomeScreen>:
     BoxLayout:
         orientation: 'horizontal'
-        
-        # First Column - Camera Placeholder
+        spacing: '10dp'
+        padding: '10dp'
+
+        # Left Column - Two Camera Feeds
         BoxLayout:
             orientation: 'vertical'
-            size_hint_y: 1
-            padding: '10dp'
-            Image:
-                id: camera_feed
-                allow_stretch: True
-                keep_ratio: True
+            spacing: '10dp'
 
-        # Second Column - Map Placeholder
+            # Top Camera Feed
+            MDCard:
+                orientation: 'vertical'
+                padding: '10dp'
+                elevation: 6
+                md_bg_color: app.theme_cls.bg_light
+                Image:
+                    id: top_camera_feed
+                    allow_stretch: True
+                    keep_ratio: True
+
+            # Bottom Camera Feed
+            MDCard:
+                orientation: 'vertical'
+                padding: '10dp'
+                elevation: 6
+                md_bg_color: app.theme_cls.bg_light
+                Image:
+                    id: bottom_camera_feed
+                    allow_stretch: True
+                    keep_ratio: True
+
+        # Right Column - Map on Top and Empty Card at Bottom
         BoxLayout:
             orientation: 'vertical'
-            size_hint_y: 1
-            padding: '10dp'
-            id: mapview_con
-            # MapView:
-            #     id: mapview
-                # source:"osm-de"
-                # lat, lon, and zoom will be set by HomeScreen class initialization
+            spacing: '10dp'
 
+            # Map Placeholder
+            MDCard:
+                orientation: 'vertical'
+                padding: '10dp'
+                elevation: 6
+                md_bg_color: app.theme_cls.bg_light
+                id: mapview_con
+                # MapView:
+                #     id: mapview
+                #     source: "osm-de"
+                #     lat, lon, and zoom will be set by HomeScreen class initialization
 
-        # Third Column - Icon Column
+            # Empty Card Placeholder
+            MDCard:
+                orientation: 'vertical'
+                padding: '10dp'
+                elevation: 6
+                md_bg_color: app.theme_cls.bg_light
+                Label:
+                    text: 'Empty Card'
+                    halign: 'center'
+                    valign: 'middle'
+
+        # Icon Column
         GridLayout:
             cols: 1
-            size_hint_x: 0.3
+            spacing: '10dp'
+            size_hint_x: 0.15
             row_default_height: '50dp'
             row_force_default: True
-            padding: '10dp'
-            spacing: '10dp'
-            
-            # Icons with on_release to open URLs in browser
+
             MDIconButton:
                 icon: 'apps'
-                user_font_size: '20sp'
+                user_font_size: '30sp'
                 on_release: root.open_url("https://example.com")
 
             MDIconButton:
                 icon: 'youtube'
-                user_font_size: '20sp'
+                user_font_size: '30sp'
                 on_release: root.open_url("https://youtube.com")
 
             MDIconButton:
                 icon: 'whatsapp'
-                user_font_size: '20sp'
+                user_font_size: '30sp'
                 on_release: root.open_url("https://web.whatsapp.com")
 
             MDIconButton:
                 icon: 'camera'
-                user_font_size: '20sp'
+                user_font_size: '30sp'
                 on_release: root.open_url("https://cameraapp.com")

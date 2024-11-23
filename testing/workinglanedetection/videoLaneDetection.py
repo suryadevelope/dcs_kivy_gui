@@ -4,17 +4,10 @@ from ultrafastLaneDetector import UltrafastLaneDetector, ModelType
 
 model_path = "models/tusimple_18.pth"
 model_type = ModelType.TUSIMPLE
-use_gpu = False
+use_gpu = True
 
-# Initialize video
-# cap = cv2.VideoCapture("video.mp4")
-
-# videoUrl = 'https://youtu.be/2CIxM7x-Clc'
-# videoPafy = pafy.new(videoUrl)
-# print(videoPafy.streams)
-# cap = cv2.VideoCapture(videoPafy.streams[-1].url)
-# cap = cv2.VideoCapture(r"D:\python_codes\dcs_kivy_gui\testing\line_detection_my\Test_3.mp4")
-cap = cv2.VideoCapture("./Lane detect test data.mp4")
+# cap = cv2.VideoCapture("./Lane detect test data.mp4")
+cap = cv2.VideoCapture("./video4.mp4")
 
 # Initialize lane detection model
 lane_detector = UltrafastLaneDetector(model_path, model_type, use_gpu)

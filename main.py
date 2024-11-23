@@ -8,6 +8,11 @@ from kivy.core.window import Window
 from screens.splash_screen import SplashScreen
 from screens.login_screen import LoginScreen
 from screens.home_screen import HomeScreen
+from kivy.core.window import Window
+
+
+Window.fullscreen = True  # This forces the app into full-screen mode.
+
 
 # Screen Manager
 class MainApp(MDApp):
