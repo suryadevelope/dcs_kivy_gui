@@ -19,7 +19,6 @@ class MainApp(MDApp):
     def build(self):
         self.theme_cls.primary_palette = "Blue"
         Logger.setLevel(logging.ERROR)
-        # Window.fullscreen = True
         
         # Load all KV files
         Builder.load_file("./kv/splash_screen.kv")

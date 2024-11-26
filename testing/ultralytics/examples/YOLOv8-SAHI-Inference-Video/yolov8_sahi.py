@@ -1,5 +1,8 @@
 # Ultralytics YOLO 🚀, AGPL-3.0 license
 
+
+#  python yolov8_sahi.py --source "/home/dcs/Desktop/dcs_kivy_gui/testing/ultralytics/assets/video3.mp4" --weights "/home/dcs/Desktop/dcs_kivy_gui/testing/ultralytics/sign_best.pt" --view-img
+
 import argparse
 from pathlib import Path
 
@@ -21,10 +24,10 @@ class SAHIInference:
 
     def load_model(self, weights):
         """Loads a YOLOv8 model with specified weights for object detection using SAHI."""
-        yolov8_model_path = f"models/{weights}"
+        yolov8_model_path = "/home/dcs/Desktop/dcs_kivy_gui/testing/ultralytics/sign_best.pt"
         download_yolov8s_model(yolov8_model_path)
         self.detection_model = AutoDetectionModel.from_pretrained(
-            model_type="yolov8", model_path=yolov8_model_path, confidence_threshold=0.3, device="cpu"
+            model_type="yolov8", model_path=yolov8_model_path, confidence_threshold=0.6, device="cuda"
         )
 
     def inference(
@@ -42,7 +45,7 @@ class SAHIInference:
             track (bool): Enable object tracking with SAHI
         """
         # Video setup
-        cap = cv2.VideoCapture(source)
+        cap = cv2.VideoCapture(0)
         assert cap.isOpened(), "Error reading video file"
         frame_width, frame_height = int(cap.get(3)), int(cap.get(4))
 
@@ -93,7 +96,7 @@ class SAHIInference:
     def parse_opt(self):
         """Parse command line arguments."""
         parser = argparse.ArgumentParser()
-        parser.add_argument("--weights", type=str, default="yolov8n.pt", help="initial weights path")
+        parser.add_argument("--weights", type=str, default="/home/dcs/Desktop/dcs_kivy_gui/testing/ultralytics/sign_best.pt", help="initial weights path")
         parser.add_argument("--source", type=str, required=True, help="video file path")
         parser.add_argument("--view-img", action="store_true", help="show results")
         parser.add_argument("--save-img", action="store_true", help="save results")

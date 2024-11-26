@@ -2,7 +2,7 @@ import cv2
 from ultralytics import YOLO
 
 # Load the YOLO model
-model = YOLO("./yolo11x.pt")
+model = YOLO("./sign_best.pt")
 # model = YOLO("./traffic_sign_detector.pt")
 
 # Initialize the webcam
