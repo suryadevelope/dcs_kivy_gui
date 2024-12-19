@@ -92,10 +92,10 @@ ScreenManager:
                         id: grid_layout
                         cols: 1
                         rows: 3  # Three rows
-                        spacing: "2dp"
+                        spacing: "12dp"
                         adaptive_height: True
 
-                        # First row: Larg er height and specific background color
+                        # First row: Larger height and specific background color
                         MDBoxLayout:
                             orientation: "vertical"
                             size_hint_y: None
@@ -118,16 +118,114 @@ ScreenManager:
                         MDBoxLayout:
                             orientation: "vertical"
                             size_hint_y: None
-                            height: "120dp"  # Medium height for the second row
+                            height: "110dp"  # Medium height for the second row
                             md_bg_color: 0.3, 0.7, 0.3, 1  # Green color
+                            MDBoxLayout:
+                                orientation: "vertical"
+                                adaptive_height: True
+                                spacing: "12dp"  # Spacing between title and artist name
 
-                            MDLabel:
-                                text: "Row 2"
-                                theme_text_color: "Secondary"
-                                size_hint_y: None
-                                height: self.texture_size[1]
-                                halign: "center"
+                                MDLabel:
+                                    text: "Song Title testing sample name"
+                                    theme_text_color: "Primary"
+                                    font_style: "H6"
 
+                                MDLabel:
+                                    text: "Artist Name"
+                                    theme_text_color: "Secondary"
+                                    font_style: "Caption"
+
+                            MDGridLayout:
+                                id: grid_layout
+                                cols: 2
+                                rows: 1
+                                adaptive_height: True
+                                spacing: "10dp"  # General spacing between elements in the grid
+                                
+                                # Second row: Music Player
+                                MDBoxLayout:
+                                    orientation: "horizontal"
+                                    size_hint_y: None
+                                    size_hint_x: 0.3
+                                    padding: "2dp"  # Padding inside the box
+                                    spacing: "10dp"  # Spacing between child elements
+                                    md_bg_color: 0.3, 0.7, 0.3, 1  # Green color
+
+                                    # Song image and title
+                                    Image:
+                                        source: "/home/dcs/Desktop/dcs_kivy_gui/assets/no_audio.png"  # Replace with your song image path
+                                        size_hint: None, None
+                                        size: "80dp", "80dp"
+                                        allow_stretch: True
+
+                                        
+                                # Progress bar and duration
+                                MDBoxLayout:
+                                    orientation: "vertical"
+                                    adaptive_height: True
+                                    padding: "5dp"  # Padding around the progress bar section
+                                    spacing: "5dp"  # Spacing between elements
+                                    size_hint_x: 1
+                                    MDBoxLayout:
+                                        orientation: "horizontal"
+                                        adaptive_height: True
+                                        padding: "5dp"  # Padding around the progress bar section
+                                        spacing: "5dp"  # Spacing between elements
+                                        size_hint_x: 1
+
+                                        MDLabel:
+                                            text: "0:00"  # Current time
+                                            theme_text_color: "Secondary"
+                                            size_hint_x: None
+                                            width: "40dp"
+
+                                        MDSlider:
+                                            min: 0
+                                            max: 100
+                                            value: 25  # Example progress
+                                            hint: False  # Disable popup on drag
+                                            size_hint_y: None
+                                            height: "20dp"  # Slider height
+
+                                        MDLabel:
+                                            text: "3:45"  # Total duration
+                                            theme_text_color: "Secondary"
+                                            size_hint_x: None
+                                            width: "40dp"
+
+                                    # Music player controls
+                                    MDBoxLayout:
+                                        orientation: "horizontal"
+                                        spacing: "8dp"  # Spacing between control buttons
+                                        size_hint_y: None
+                                        height: "40dp"
+
+                                        MDIconButton:
+                                            icon: "skip-previous"
+                                            user_font_size: "24sp"
+                                            pos_hint: {"center_y": 0.5}
+
+                                        MDIconButton:
+                                            icon: "rewind-5"
+                                            user_font_size: "24sp"
+                                            pos_hint: {"center_y": 0.5}
+
+                                        MDIconButton:
+                                            icon: "play"
+                                            user_font_size: "24sp"
+                                            pos_hint: {"center_y": 0.5}
+
+                                        MDIconButton:
+                                            icon: "fast-forward-5"
+                                            user_font_size: "24sp"
+                                            pos_hint: {"center_y": 0.5}
+
+                                        MDIconButton:
+                                            icon: "skip-next"
+                                            user_font_size: "24sp"
+                                            pos_hint: {"center_y": 0.5}
+
+                               
                         # Third row: Smaller height and another color
                         MDBoxLayout:
                             orientation: "vertical"
