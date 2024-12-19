@@ -11,7 +11,7 @@ from screens.home_screen import HomeScreen
 from kivy.core.window import Window
 
 
-Window.fullscreen = True  # This forces the app into full-screen mode.
+# Window.fullscreen = True  # This forces the app into full-screen mode.
 
 
 # Screen Manager

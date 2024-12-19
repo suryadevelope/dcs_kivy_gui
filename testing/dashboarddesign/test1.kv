@@ -1,0 +1,190 @@
+
+
+ScreenManager:
+    MainScreen:
+        name: "main"
+
+<MainScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        md_bg_color: 0, 0, 0, 1  # Light gray background
+
+
+        MDBoxLayout:
+            id: box
+            orientation: "vertical"
+            spacing: "12dp"
+            pos_hint: {"top": 1}
+            adaptive_height: True
+
+        MDBoxLayout:
+            orientation: "horizontal"
+
+            MDBoxLayout:
+                orientation: "vertical"
+                size_hint_x: 0.07
+                # height: self.minimum_height
+                # pos_hint: {"center_y": 0.5}  # Center vertically in the screen
+                padding: "5dp"
+                spacing: "3dp"
+                # md_bg_color: 0, 0, 0, 0  # Light gray background
+                
+                GridLayout:
+                    cols: 1
+                    spacing: '10dp'
+                    size_hint_x: 0.15
+                    row_default_height: '50dp'
+                    row_force_default: True
+
+                    MDIconButton:
+                        canvas.before:
+                            Color:
+                                rgba: 0.7, 0.7, 0.7, 1  # Gray circle color
+                            Ellipse:
+                                size: self.size
+                                pos: self.pos
+                        icon: 'apps'
+                        user_font_size: '30sp'
+                        # on_release: root.open_url("https://example.com")
+
+                    MDIconButton:
+                        icon: 'youtube'
+                        user_font_size: '30sp'
+                        canvas.before:
+                            Color:
+                                rgba: 0.7, 0.7, 0.7, 1  # Gray circle color
+                            Ellipse:
+                                size: self.size
+                                pos: self.pos
+                        # on_release: root.open_url("https://youtube.com")
+
+                    MDIconButton:
+                        icon: 'whatsapp'
+                        user_font_size: '30sp'
+                        canvas.before:
+                            Color:
+                                rgba: 0.7, 0.7, 0.7, 1  # Gray circle color
+                            Ellipse:
+                                size: self.size
+                                pos: self.pos
+                        # on_release: root.open_url("https://web.whatsapp.com")
+
+                    MDIconButton:
+                        icon: 'camera'
+                        user_font_size: '30sp'
+                        canvas.before:
+                            Color:
+                                rgba: 0.7, 0.7, 0.7, 1  # Gray circle color
+                            Ellipse:
+                                size: self.size
+                                pos: self.pos
+                        # on_release: root.open_url("https://cameraapp.com")
+
+                
+            MDBoxLayout:
+                orientation: "horizontal" #first coloumn
+                padding: "2dp"
+                MDBoxLayout:
+                    orientation: "vertical"
+                    padding: "2dp"
+                    md_bg_color: 0.9, 0.9, 0.4, 1
+                    MDGridLayout:
+                        id: grid_layout
+                        cols: 1
+                        rows: 3  # Three rows
+                        spacing: "2dp"
+                        adaptive_height: True
+
+                        # First row: Larg er height and specific background color
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            size_hint_y: None
+                            height: "255dp"  # Set a specific height for the first row
+                            md_bg_color: 0.7, 0.7, 0.7, 1  # Gray color
+
+                            MDCard:
+                                orientation: 'vertical'
+                                padding: '10dp'
+                                elevation: 3
+                                md_bg_color: app.theme_cls.bg_light
+                                id: mapview_con
+                                # MapView:
+                                #     id: mapview
+                                #     source: "osm-de"
+                                    # lat, lon, and zoom will be set by HomeScreen class initialization
+
+
+                        # Second row: Medium height and different color
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            size_hint_y: None
+                            height: "120dp"  # Medium height for the second row
+                            md_bg_color: 0.3, 0.7, 0.3, 1  # Green color
+
+                            MDLabel:
+                                text: "Row 2"
+                                theme_text_color: "Secondary"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                                halign: "center"
+
+                        # Third row: Smaller height and another color
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            size_hint_y: None
+                            height: "80dp"  # Smaller height for the third row
+                            md_bg_color: 0.7, 0.3, 0.3, 1  # Red color
+
+                            MDLabel:
+                                text: "Row 3"
+                                theme_text_color: "Secondary"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                                halign: "center"
+
+
+                MDBoxLayout:
+                    orientation: "vertical"
+                    padding: "8dp"
+                    md_bg_color: 0.9, 0.9, 0.7, 1
+
+
+                    MDGridLayout:
+                        id: grid_layout
+                        cols: 1
+                        rows: 3  # Three rows
+                        spacing: "2dp"
+                        adaptive_height: True
+
+                        # First row: Larg er height and specific background color
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            size_hint_y: None
+                            height: "255dp"  # Set a specific height for the first row
+                            md_bg_color: 0.7, 0.7, 0.7, 1  # Gray color
+
+                            MDCard:
+                                orientation: 'vertical'
+                                padding: '10dp'
+                                elevation: 3
+                                md_bg_color: app.theme_cls.bg_light
+                                Image:
+                                    source: "/home/dcs/Desktop/dcs_kivy_gui/assets/no_cam.png"  # Replace with your image path
+                                    id: camera_feed
+                                    allow_stretch: True
+                                    keep_ratio: True
+
+                        # Second row: Medium height and different color
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            size_hint_y: None
+                            height: "200dp"  # Medium height for the second row
+                            md_bg_color: 0.3, 0.7, 0.3, 1  # Green color
+
+                            MDLabel:
+                                text: "Row 2"
+                                theme_text_color: "Secondary"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                                halign: "center"
+
