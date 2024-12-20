@@ -1,5 +1,5 @@
 
-
+#:import MapView kivy.garden.mapview.MapView
 ScreenManager:
     MainScreen:
         name: "main"
@@ -108,10 +108,13 @@ ScreenManager:
                                 elevation: 3
                                 md_bg_color: app.theme_cls.bg_light
                                 id: mapview_con
-                                # MapView:
-                                #     id: mapview
-                                #     source: "osm-de"
-                                    # lat, lon, and zoom will be set by HomeScreen class initialization
+        # ['osm', 'osm-hot', 'osm-de', 'osm-fr', 'cyclemap', 'thunderforest-cycle', 'thunderforest-transport', 'thunderforest-landscape', 'thunderforest-outdoors'])
+
+                                MapView:
+                                    lat:17.46456
+                                    lng:78.45827
+                                    zoom:18
+                                    map_source:"cyclemap"
 
 
                         # Second row: Medium height and different color
@@ -123,6 +126,7 @@ ScreenManager:
                             MDBoxLayout:
                                 orientation: "vertical"
                                 adaptive_height: True
+                                pos_hint_x: 0.3
                                 spacing: "12dp"  # Spacing between title and artist name
 
                                 MDLabel:
@@ -131,7 +135,7 @@ ScreenManager:
                                     font_style: "H6"
 
                                 MDLabel:
-                                    text: "Artist Name"
+                                    text: ""
                                     theme_text_color: "Secondary"
                                     font_style: "Caption"
 
@@ -145,7 +149,7 @@ ScreenManager:
                                 # Second row: Music Player
                                 MDBoxLayout:
                                     orientation: "horizontal"
-                                    size_hint_y: None
+                                    size_hint_y: 0.2
                                     size_hint_x: 0.3
                                     padding: "2dp"  # Padding inside the box
                                     spacing: "10dp"  # Spacing between child elements
