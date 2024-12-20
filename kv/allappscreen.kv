@@ -1,0 +1,22 @@
+<AllappsScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        id: appswindow
+
+        MDBoxLayout:
+            id: titlebar
+            orientation: "vertical"
+            spacing: "12dp"
+            pos_hint: {"top": 1}
+            adaptive_height: True
+
+        ScrollView:
+            MDGridLayout:
+                id: grid_layout
+                size_hint_y: None
+                height: self.minimum_height
+                cols: 7
+                padding: "10dp"
+                spacing: "10dp"
+                rows: 5
+                # md_bg_color: 0, 0, 0, 1  # Light gray background

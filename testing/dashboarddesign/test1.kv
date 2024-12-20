@@ -1,5 +1,7 @@
 
 #:import MapView kivy.garden.mapview.MapView
+
+
 ScreenManager:
     MainScreen:
         name: "main"
@@ -45,8 +47,8 @@ ScreenManager:
                                 pos: self.pos
                         icon: 'apps'
                         user_font_size: '30sp'
-                        # on_release: root.open_url("https://example.com")
-
+                        on_release: root.show_popup("apps") 
+                       
                     MDIconButton:
                         icon: 'youtube'
                         user_font_size: '30sp'
@@ -104,17 +106,18 @@ ScreenManager:
 
                             MDCard:
                                 orientation: 'vertical'
-                                padding: '10dp'
+                                padding: '5dp'
                                 elevation: 3
                                 md_bg_color: app.theme_cls.bg_light
                                 id: mapview_con
         # ['osm', 'osm-hot', 'osm-de', 'osm-fr', 'cyclemap', 'thunderforest-cycle', 'thunderforest-transport', 'thunderforest-landscape', 'thunderforest-outdoors'])
 
-                                MapView:
-                                    lat:17.46456
-                                    lng:78.45827
-                                    zoom:18
-                                    map_source:"cyclemap"
+                                # MapView:
+                                #     id: mapview
+                                    # lat:17.46456
+                                    # lng:78.45827
+                                    # zoom:18
+                                    # map_source:satellite_map_source
 
 
                         # Second row: Medium height and different color
@@ -274,8 +277,8 @@ ScreenManager:
                                     source: "/home/dcs/Desktop/dcs_kivy_gui/assets/no_cam.png"  # Replace with your image path
                                     id: camera_feed
                                     allow_stretch: True
-                                    keep_ratio: True
-
+                                    keep_ratio: False  # Disable maintaining aspect ratio
+                                    
                         # Second row: Medium height and different color
                         MDBoxLayout:
                             orientation: "vertical"
@@ -284,7 +287,7 @@ ScreenManager:
                             md_bg_color: 0.3, 0.7, 0.3, 1  # Green color
 
                             MDLabel:
-                                text: "Row 2"
+                                text: "any warning msg"
                                 theme_text_color: "Secondary"
                                 size_hint_y: None
                                 height: self.texture_size[1]

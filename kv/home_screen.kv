@@ -1,146 +1,288 @@
-# <HomeScreen>:
-#     BoxLayout:
-#         orientation: 'horizontal'
-        
-#         # First Column - Camera Placeholder
-#         BoxLayout:
-#             orientation: 'vertical'
-#             size_hint_y: 1
-#             padding: '10dp'
-#             Image:
-#                 id: camera_feed
-#                 allow_stretch: True
-#                 keep_ratio: True
-
-
-#         # Second Column - Map Placeholder
-#         BoxLayout:
-#             orientation: 'vertical'
-#             size_hint_y: 1
-#             padding: '10dp'
-#             id: mapview_con
-#             # MapView:
-#             #     id: mapview
-#                 # source:"osm-de"
-#                 # lat, lon, and zoom will be set by HomeScreen class initialization
-
-
-#         # Third Column - Icon Column
-#         GridLayout:
-#             cols: 1
-#             size_hint_x: 0.3
-#             row_default_height: '50dp'
-#             row_force_default: True
-#             padding: '10dp'
-#             spacing: '10dp'
-            
-#             # Icons with on_release to open URLs in browser
-#             MDIconButton:
-#                 icon: 'apps'
-#                 user_font_size: '20sp'
-#                 on_release: root.open_url("https://example.com")
-
-#             MDIconButton:
-#                 icon: 'youtube'
-#                 user_font_size: '20sp'
-#                 on_release: root.open_url("https://youtube.com")
-
-#             MDIconButton:
-#                 icon: 'whatsapp'
-#                 user_font_size: '20sp'
-#                 on_release: root.open_url("https://web.whatsapp.com")
-
-#             MDIconButton:
-#                 icon: 'camera'
-#                 user_font_size: '20sp'
-#                 on_release: root.open_url("https://cameraapp.com")
-
 
 <HomeScreen>:
-    BoxLayout:
-        orientation: 'horizontal'
-        spacing: '10dp'
-        padding: '10dp'
+    MDBoxLayout:
+        orientation: "vertical"
+        md_bg_color: 0, 0, 0, 1  # Light gray background
 
-        # Left Column - Two Camera Feeds
-        BoxLayout:
-            orientation: 'vertical'
-            spacing: '10dp'
 
-            # Top Camera Feed
-            MDCard:
-                orientation: 'vertical'
-                padding: '10dp'
-                elevation: 6
-                md_bg_color: app.theme_cls.bg_light
-                Image:
-                    id: top_camera_feed
-                    allow_stretch: True
-                    keep_ratio: True
+        MDBoxLayout:
+            id: box
+            orientation: "vertical"
+            spacing: "12dp"
+            pos_hint: {"top": 1}
+            adaptive_height: True
 
-            # Bottom Camera Feed
-            MDCard:
-                orientation: 'vertical'
-                padding: '10dp'
-                elevation: 6
-                md_bg_color: app.theme_cls.bg_light
-                Image:
-                    id: bottom_camera_feed
-                    allow_stretch: True
-                    keep_ratio: True
+        MDBoxLayout:
+            orientation: "horizontal"
 
-        # Right Column - Map on Top and Empty Card at Bottom
-        BoxLayout:
-            orientation: 'vertical'
-            spacing: '10dp'
+            MDBoxLayout:
+                orientation: "vertical"
+                size_hint_x: 0.07
+                # height: self.minimum_height
+                # pos_hint: {"center_y": 0.5}  # Center vertically in the screen
+                padding: "5dp"
+                spacing: "3dp"
+                # md_bg_color: 0, 0, 0, 0  # Light gray background
+                
+                GridLayout:
+                    cols: 1
+                    spacing: '10dp'
+                    size_hint_x: 0.15
+                    row_default_height: '50dp'
+                    row_force_default: True
 
-            # Map Placeholder
-            MDCard:
-                orientation: 'vertical'
-                padding: '10dp'
-                elevation: 6
-                md_bg_color: app.theme_cls.bg_light
-                id: mapview_con
-                # MapView:
-                #     id: mapview
-                #     source: "osm-de"
-                #     lat, lon, and zoom will be set by HomeScreen class initialization
+                    MDIconButton:
+                        canvas.before:
+                            Color:
+                                rgba: 0.7, 0.7, 0.7, 1  # Gray circle color
+                            Ellipse:
+                                size: self.size
+                                pos: self.pos
+                        icon: 'apps'
+                        user_font_size: '30sp'
+                        on_release: root.change_screen('allapps') 
+                       
+                    MDIconButton:
+                        icon: 'youtube'
+                        user_font_size: '30sp'
+                        canvas.before:
+                            Color:
+                                rgba: 0.7, 0.7, 0.7, 1  # Gray circle color
+                            Ellipse:
+                                size: self.size
+                                pos: self.pos
+                        # on_release: root.open_url("https://youtube.com")
 
-            # Empty Card Placeholder
-            MDCard:
-                orientation: 'vertical'
-                padding: '10dp'
-                elevation: 6
-                md_bg_color: app.theme_cls.bg_light
-                Label:
-                    text: 'Empty Card'
-                    halign: 'center'
-                    valign: 'middle'
+                    MDIconButton:
+                        icon: 'whatsapp'
+                        user_font_size: '30sp'
+                        canvas.before:
+                            Color:
+                                rgba: 0.7, 0.7, 0.7, 1  # Gray circle color
+                            Ellipse:
+                                size: self.size
+                                pos: self.pos
+                        # on_release: root.open_url("https://web.whatsapp.com")
 
-        # Icon Column
-        GridLayout:
-            cols: 1
-            spacing: '10dp'
-            size_hint_x: 0.15
-            row_default_height: '50dp'
-            row_force_default: True
+                    MDIconButton:
+                        icon: 'camera'
+                        user_font_size: '30sp'
+                        canvas.before:
+                            Color:
+                                rgba: 0.7, 0.7, 0.7, 1  # Gray circle color
+                            Ellipse:
+                                size: self.size
+                                pos: self.pos
+                        # on_release: root.open_url("https://cameraapp.com")
 
-            MDIconButton:
-                icon: 'apps'
-                user_font_size: '30sp'
-                on_release: root.open_url("https://example.com")
+                
+            MDBoxLayout:
+                orientation: "horizontal" #first coloumn
+                padding: "2dp"
+                MDBoxLayout:
+                    orientation: "vertical"
+                    padding: "2dp"
+                    md_bg_color: 0.9, 0.9, 0.4, 1
+                    MDGridLayout:
+                        id: grid_layout
+                        cols: 1
+                        rows: 3  # Three rows
+                        spacing: "12dp"
+                        adaptive_height: True
 
-            MDIconButton:
-                icon: 'youtube'
-                user_font_size: '30sp'
-                on_release: root.open_url("https://youtube.com")
+                        # First row: Larger height and specific background color
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            size_hint_y: None
+                            height: "255dp"  # Set a specific height for the first row
+                            md_bg_color: 0.7, 0.7, 0.7, 1  # Gray color
 
-            MDIconButton:
-                icon: 'whatsapp'
-                user_font_size: '30sp'
-                on_release: root.open_url("https://web.whatsapp.com")
+                            MDCard:
+                                orientation: 'vertical'
+                                padding: '5dp'
+                                elevation: 3
+                                md_bg_color: app.theme_cls.bg_light
+                                id: mapview_con
+        # ['osm', 'osm-hot', 'osm-de', 'osm-fr', 'cyclemap', 'thunderforest-cycle', 'thunderforest-transport', 'thunderforest-landscape', 'thunderforest-outdoors'])
 
-            MDIconButton:
-                icon: 'camera'
-                user_font_size: '30sp'
-                on_release: root.open_url("https://cameraapp.com")
+                                # MapView:
+                                #     id: mapview
+                                    # lat:17.46456
+                                    # lng:78.45827
+                                    # zoom:18
+                                    # map_source:satellite_map_source
+
+
+                        # Second row: Medium height and different color
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            size_hint_y: None
+                            height: "110dp"  # Medium height for the second row
+                            md_bg_color: 0.3, 0.7, 0.3, 1  # Green color
+                            MDBoxLayout:
+                                orientation: "vertical"
+                                adaptive_height: True
+                                pos_hint_x: 0.3
+                                spacing: "12dp"  # Spacing between title and artist name
+
+                                MDLabel:
+                                    text: "Song Title testing sample name"
+                                    theme_text_color: "Primary"
+                                    font_style: "H6"
+
+                                MDLabel:
+                                    text: ""
+                                    theme_text_color: "Secondary"
+                                    font_style: "Caption"
+
+                            MDGridLayout:
+                                id: grid_layout
+                                cols: 2
+                                rows: 1
+                                adaptive_height: True
+                                spacing: "10dp"  # General spacing between elements in the grid
+                                
+                                # Second row: Music Player
+                                MDBoxLayout:
+                                    orientation: "horizontal"
+                                    size_hint_y: 0.2
+                                    size_hint_x: 0.3
+                                    padding: "2dp"  # Padding inside the box
+                                    spacing: "10dp"  # Spacing between child elements
+                                    md_bg_color: 0.3, 0.7, 0.3, 1  # Green color
+
+                                    # Song image and title
+                                    Image:
+                                        source: "/home/dcs/Desktop/dcs_kivy_gui/assets/no_audio.png"  # Replace with your song image path
+                                        size_hint: None, None
+                                        size: "80dp", "80dp"
+                                        allow_stretch: True
+
+                                        
+                                # Progress bar and duration
+                                MDBoxLayout:
+                                    orientation: "vertical"
+                                    adaptive_height: True
+                                    padding: "5dp"  # Padding around the progress bar section
+                                    spacing: "5dp"  # Spacing between elements
+                                    size_hint_x: 1
+                                    MDBoxLayout:
+                                        orientation: "horizontal"
+                                        adaptive_height: True
+                                        padding: "5dp"  # Padding around the progress bar section
+                                        spacing: "5dp"  # Spacing between elements
+                                        size_hint_x: 1
+
+                                        MDLabel:
+                                            text: "0:00"  # Current time
+                                            theme_text_color: "Secondary"
+                                            size_hint_x: None
+                                            width: "40dp"
+
+                                        MDSlider:
+                                            min: 0
+                                            max: 100
+                                            value: 25  # Example progress
+                                            hint: False  # Disable popup on drag
+                                            size_hint_y: None
+                                            height: "20dp"  # Slider height
+
+                                        MDLabel:
+                                            text: "3:45"  # Total duration
+                                            theme_text_color: "Secondary"
+                                            size_hint_x: None
+                                            width: "40dp"
+
+                                    # Music player controls
+                                    MDBoxLayout:
+                                        orientation: "horizontal"
+                                        spacing: "8dp"  # Spacing between control buttons
+                                        size_hint_y: None
+                                        height: "40dp"
+
+                                        MDIconButton:
+                                            icon: "skip-previous"
+                                            user_font_size: "24sp"
+                                            pos_hint: {"center_y": 0.5}
+
+                                        MDIconButton:
+                                            icon: "rewind-5"
+                                            user_font_size: "24sp"
+                                            pos_hint: {"center_y": 0.5}
+
+                                        MDIconButton:
+                                            icon: "play"
+                                            user_font_size: "24sp"
+                                            pos_hint: {"center_y": 0.5}
+
+                                        MDIconButton:
+                                            icon: "fast-forward-5"
+                                            user_font_size: "24sp"
+                                            pos_hint: {"center_y": 0.5}
+
+                                        MDIconButton:
+                                            icon: "skip-next"
+                                            user_font_size: "24sp"
+                                            pos_hint: {"center_y": 0.5}
+
+                               
+                        # Third row: Smaller height and another color
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            size_hint_y: None
+                            height: "80dp"  # Smaller height for the third row
+                            md_bg_color: 0.7, 0.3, 0.3, 1  # Red color
+
+                            MDLabel:
+                                text: "Row 3"
+                                theme_text_color: "Secondary"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                                halign: "center"
+
+
+                MDBoxLayout:
+                    orientation: "vertical"
+                    padding: "8dp"
+                    md_bg_color: 0.9, 0.9, 0.7, 1
+
+
+                    MDGridLayout:
+                        id: grid_layout
+                        cols: 1
+                        rows: 3  # Three rows
+                        spacing: "2dp"
+                        adaptive_height: True
+
+                        # First row: Larg er height and specific background color
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            size_hint_y: None
+                            height: "255dp"  # Set a specific height for the first row
+                            md_bg_color: 0.7, 0.7, 0.7, 1  # Gray color
+
+                            MDCard:
+                                orientation: 'vertical'
+                                padding: '10dp'
+                                elevation: 3
+                                md_bg_color: app.theme_cls.bg_light
+                                Image:
+                                    source: "/home/dcs/Desktop/dcs_kivy_gui/assets/no_cam.png"  # Replace with your image path
+                                    id: camera_feed
+                                    allow_stretch: True
+                                    keep_ratio: False  # Disable maintaining aspect ratio
+                                    
+                        # Second row: Medium height and different color
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            size_hint_y: None
+                            height: "200dp"  # Medium height for the second row
+                            md_bg_color: 0.3, 0.7, 0.3, 1  # Green color
+
+                            MDLabel:
+                                text: "any warning msg"
+                                theme_text_color: "Secondary"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                                halign: "center"
+

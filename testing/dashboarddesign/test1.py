@@ -8,40 +8,42 @@ from kivy.clock import Clock
 from kivy.graphics.texture import Texture
 from kivy_garden.mapview import MapView
 from kivy_garden.mapview import MapMarker, MapView,MapSource
-from kivy_garden.mapview.geojson import GeoJsonMapLayer
-from kivy_garden.mapview.utils import get_zoom_for_radius, haversine
+from kivymd.uix.dialog import MDDialog
+from kivymd.uix.button import MDRaisedButton
+from kivymd.uix.boxlayout import MDBoxLayout
 
 import cv2
+from testing.dashboarddesign.appsview import Appsview
 
 class MainScreen(Screen):
+    def __init__(self, **kw):
+        self.dialog=None
+        self.alliconsview = Appsview()
+
+        super().__init__(**kw)
+
     grid_layout = ObjectProperty()
 
     def add_items(self):
         self.capture = cv2.VideoCapture(0)  # Initialize OpenCV camera
         # Initialize map source
         # ['osm', 'osm-hot', 'osm-de', 'osm-fr', 'cyclemap', 'thunderforest-cycle', 'thunderforest-transport', 'thunderforest-landscape', 'thunderforest-outdoors'])
-        source = "http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
-        print(MapSource.providers.keys())
+        satellite_map_source = MapSource(
+            url="http://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+           
+            min_zoom=1,
+            max_zoom=19,
+            tile_size=256,
+        )
 
-        options = {}
-        layer = GeoJsonMapLayer(source=source)
-
-        # if layer.geojson:
-        # try to auto center the map on the source
-        lon, lat = layer.center
-        options["lon"] = lon
-        options["lat"] = lat
-        # min_lon, max_lon, min_lat, max_lat = layer.bounds
-        # radius = haversine(min_lon, min_lat, max_lon, max_lat)
-        # zoom = get_zoom_for_radius(radius, lat)
-        # options["zoom"] = zoom
-        # options["map_source"]=MapView.map_source('MyCustomTiles', url=source, subdomains=['mt0','mt1','mt2','mt3'])
-        
-
-        # view = MapView(**options)
-        # view.MapSource(source=source, subdomains=['mt0','mt1','mt2','mt3'])
-        # view.add_layer(layer)
-        # self.ids.mapview_con.add_widget(view)
+        # Set up the MapView with the custom tile source
+        mapview = MapView(
+            lat=0,  # Latitude
+            lon=0,  # Longitude
+            zoom=2,  # Initial zoom level
+            map_source=satellite_map_source
+        )
+        self.ids.mapview_con.add_widget(mapview)
 
         Clock.schedule_interval(self.update_camera, 1.0 / 30)
 
@@ -78,18 +80,68 @@ class MainScreen(Screen):
         self.ids.mapview.lat = lat
         self.ids.mapview.lon = lon
         self.ids.mapview.zoom = zoom
+    
+    def show_popup(self,type):
+        print(type)
+
+        content_final=MDBoxLayout(
+                orientation="vertical",
+                spacing="12dp",
+                adaptive_height=True,
+                children=[
+                    MDRaisedButton(
+                        text="Option 1",
+                        size_hint=(None, None),
+                        size=("200dp", "48dp"),
+                        on_release=lambda x: self.close_popup()
+                    ),
+                    MDRaisedButton(
+                        text="Option 2",
+                        size_hint=(None, None),
+                        size=("200dp", "48dp"),
+                        on_release=lambda x: self.close_popup()
+                    ),
+                ]
+            )
+        if(type=="apps"):
+            content_final=self.ids.appswindow
+            self.alliconsview.update_grid(content_final)
+            
+        
+
+        if not self.dialog:
+            self.dialog = MDDialog(
+                title="Popup Window",
+                type="custom",
+                content_cls=content_final,
+                buttons=[
+                    MDRaisedButton(
+                        text="CLOSE",
+                        on_release=lambda x: self.close_popup()
+                    ),
+                ],
+            )
+        self.dialog.open()
+
+    def close_popup(self):
+        if self.dialog:
+            self.dialog.dismiss()
 
     def on_stop(self):
         # Release the camera when closing the app
         self.capture.release()
+    
 
 class MyApp(MDApp):
+    
     def build(self):
         self.theme_cls.theme_style = "Light"
         self.theme_cls.primary_palette = "Blue"
+        Builder.load_file("./allapps.kv")
         return Builder.load_file("./test1.kv")
 
     def on_start(self):
+        
         # Add initial items dynamically
         self.root.get_screen("main").add_items()
 
