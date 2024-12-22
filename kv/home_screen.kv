@@ -105,12 +105,24 @@
                                 id: mapview_con
         # ['osm', 'osm-hot', 'osm-de', 'osm-fr', 'cyclemap', 'thunderforest-cycle', 'thunderforest-transport', 'thunderforest-landscape', 'thunderforest-outdoors'])
 
-                                # MapView:
-                                #     id: mapview
-                                    # lat:17.46456
-                                    # lng:78.45827
-                                    # zoom:18
-                                    # map_source:satellite_map_source
+                                MapView:
+                                    id: main_map
+                                    
+
+                                    MapMarkerPopup:
+                                        id: main_map_me
+                                        lat: 17.464484
+                                        lon: 78.593891
+                                        source: 'assets/nav_icon.png'
+                                        Button:
+                                            size: root.width*0.8, root.height*0.8
+                                            background_color: 0, 0, 0, 0
+                                            background_normal: ''
+                                            canvas.before:
+                                                Ellipse:
+                                                    source: 'assets/nav_icon.png'
+                                                    angle_start: 0
+                                                    angle_end: 360
 
 
                         # Second row: Medium height and different color
@@ -263,15 +275,19 @@
 
                             MDCard:
                                 orientation: 'vertical'
+                                # on_release: root.show_popup("video")
                                 padding: '10dp'
                                 elevation: 3
                                 md_bg_color: app.theme_cls.bg_light
+                                # on_release:root.show_popup("video1")
+
                                 Image:
                                     source: "/home/dcs/Desktop/dcs_kivy_gui/assets/no_cam.png"  # Replace with your image path
                                     id: camera_feed
                                     allow_stretch: True
                                     keep_ratio: False  # Disable maintaining aspect ratio
-                                    
+                                    on_touch_down: 
+                                        root.open_dialog(self) if self.collide_point(*args[1].pos) else None
                         # Second row: Medium height and different color
                         MDBoxLayout:
                             orientation: "vertical"
@@ -279,10 +295,20 @@
                             height: "200dp"  # Medium height for the second row
                             md_bg_color: 0.3, 0.7, 0.3, 1  # Green color
 
-                            MDLabel:
-                                text: "any warning msg"
-                                theme_text_color: "Secondary"
-                                size_hint_y: None
-                                height: self.texture_size[1]
-                                halign: "center"
+                            MDBoxLayout:
+                                id:fuel_meter
+                                orientation: "vertical"
+                                Fuel_meter:
+                                    id: fuel_meter
+                                    size_hint: 0.3, 0.3
+                                
+
+                            MDBoxLayout:
+                                id:speed_meter
+                                orientation: "vertical"
+                                Speedometer:
+                                    id: speedometer
+                                    size_hint: 1, 7
+                                    padding:50, 20, 50, 20
+                                    spacing:20
 

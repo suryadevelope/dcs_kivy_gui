@@ -1,6 +1,7 @@
 import json
 from kivy.uix.screenmanager import Screen
 from kivymd.uix.label import MDLabel
+from kivymd.uix.card import MDCard
 from kivy.uix.image import Image
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.toolbar import MDTopAppBar
@@ -31,8 +32,11 @@ class AllappsScreen(Screen):
             label = MDLabel(text=item["title"], theme_text_color="Secondary", halign="center")
             item_layout.add_widget(label)
 
-            # Add the item layout (which contains the image and label) to the grid
-            grid_layout.add_widget(item_layout)
+            card = MDCard(size_hint=(None, None), size=(120, 130), padding=10, elevation=5, radius=[15])
+            card.add_widget(item_layout)
+
+            # Add the card to the grid layout
+            grid_layout.add_widget(card)
 
     
     def updatetitlebar(self):

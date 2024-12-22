@@ -17,7 +17,7 @@ class SplashScreen(Screen):
             self.store.put("devicetoken", token=device_token["dcs_token"])
             print("Device token received and stored.",device_token)
         
-        Clock.schedule_once(self.switch_to_login, 3)
+        Clock.schedule_once(self.switch_to_login, 10)
 
     def switch_to_login(self, *args):
 
